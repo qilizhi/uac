@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlx.uac.dao.UserInfoMapper">
+	<resultMap id="BaseResultMap" type="com.mlx.uac.model.UserInfo">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="tele_phone" property="telePhone" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="district" property="district" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+		<result column="card_type" property="cardType" jdbcType="INTEGER" />
+		<result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+		<result column="buy_count" property="buyCount" jdbcType="INTEGER" />
+		<result column="consume_amount" property="consumeAmount"
+			jdbcType="DECIMAL" />
+		<result column="vip" property="vip" jdbcType="INTEGER" />
+		<result column="mark" property="mark" jdbcType="INTEGER" />
+		<result column="used_mark" property="usedMark" jdbcType="INTEGER" />
+		<result column="last_time" property="lastTime" jdbcType="TIMESTAMP" />
+		<result column="reg_date" property="regDate" jdbcType="VARCHAR" />
+		<result column="reg_time" property="regTime" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Example_Where_Clause">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userId != null and userId != ''">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="userName != null and userName != ''">
+				and user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				and mobile = #{mobile,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null and email != ''">
+				and email = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null and password != ''">
+				and password = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="cardNo != null and cardNo != ''">
+				and card_no = #{cardNo,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="Base_Column_List">
+		user_id, user_name, password, head_img_url, nickname, name,
+		sex, mobile, tele_phone, email, birthday, province, city, district,
+		country, address, zip_code,	card_type, card_no, buy_count,
+		consume_amount, vip, mark, used_mark, last_time, reg_date,
+		reg_time, create_time, update_time
+	</sql>
+
+	<select id="select" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<select id="getUserInfoByLoginName" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<select id="list" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_info
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from user_info
+		where
+		user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="userId"
+			parameterType="com.mlx.uac.model.UserInfo">
+		insert into user_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="headImgUrl != null">
+				head_img_url,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="telePhone != null">
+				tele_phone,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="district != null">
+				district,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="zipCode != null">
+				zip_code,
+			</if>
+			<if test="cardType != null">
+				card_type,
+			</if>
+			<if test="cardNo != null">
+				card_no,
+			</if>
+			<if test="buyCount != null">
+				buy_count,
+			</if>
+			<if test="consumeAmount != null">
+				consume_amount,
+			</if>
+			<if test="vip != null">
+				vip,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+			<if test="usedMark != null">
+				used_mark,
+			</if>
+			<if test="lastTime != null">
+				last_time,
+			</if>
+			<if test="regDate != null">
+				reg_date,
+			</if>
+			<if test="regTime != null">
+				reg_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="headImgUrl != null">
+				#{headImgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="telePhone != null">
+				#{telePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				#{district,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="zipCode != null">
+				#{zipCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				#{cardType,jdbcType=INTEGER},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="buyCount != null">
+				#{buyCount,jdbcType=INTEGER},
+			</if>
+			<if test="consumeAmount != null">
+				#{consumeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="vip != null">
+				#{vip,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=INTEGER},
+			</if>
+			<if test="usedMark != null">
+				#{usedMark,jdbcType=INTEGER},
+			</if>
+			<if test="lastTime != null">
+				#{lastTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="regDate != null">
+				#{regDate,jdbcType=VARCHAR},
+			</if>
+			<if test="regTime != null">
+				#{regTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.mlx.uac.model.UserInfo">
+		update user_info
+		<set>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="headImgUrl != null">
+				head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="telePhone != null">
+				tele_phone = #{telePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="district != null">
+				district = #{district,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				country = #{country,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="zipCode != null">
+				zip_code = #{zipCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				card_type = #{cardType,jdbcType=INTEGER},
+			</if>
+			<if test="cardNo != null">
+				card_no = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="buyCount != null">
+				buy_count = #{buyCount,jdbcType=INTEGER},
+			</if>
+			<if test="consumeAmount != null">
+				consume_amount = #{consumeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="vip != null">
+				vip = #{vip,jdbcType=INTEGER},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=INTEGER},
+			</if>
+			<if test="usedMark != null">
+				used_mark = #{usedMark,jdbcType=INTEGER},
+			</if>
+			<if test="lastTime != null">
+				last_time = #{lastTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="regDate != null">
+				reg_date = #{regDate,jdbcType=VARCHAR},
+			</if>
+			<if test="regTime != null">
+				reg_time = #{regTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

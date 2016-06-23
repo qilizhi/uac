@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlx.uac.dao.UserSecurityCenterMapper">
+	<resultMap id="BaseResultMap" type="com.mlx.uac.model.UserSecurityCenter">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="verify_user_name" property="verifyUserName" jdbcType="INTEGER" />
+		<result column="verify_password" property="verifyPassword" jdbcType="INTEGER" />
+		<result column="verify_mobile" property="verifyMobile" jdbcType="INTEGER" />
+		<result column="verify_email" property="verifyEmail" jdbcType="INTEGER" />
+		<result column="verify_card_no" property="verifyCardNo" jdbcType="INTEGER" />
+		<result column="verify_question" property="verifyQuestion" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Example_Where_Clause">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="userId != null and userId != ''">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Base_Column_List">
+		user_id, verify_user_name, verify_password, verify_mobile, verify_email, verify_card_no,
+		verify_question, create_time, update_time
+	</sql>
+	
+	<select id="select" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_security_center
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="list" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user_security_center
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from user_security_center
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="com.mlx.uac.model.UserSecurityCenter">
+		insert into user_security_center
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="verifyUserName != null">
+				verify_user_name,
+			</if>
+			<if test="verifyPassword != null">
+				verify_password,
+			</if>
+			<if test="verifyMobile != null">
+				verify_mobile,
+			</if>
+			<if test="verifyEmail != null">
+				verify_email,
+			</if>
+			<if test="verifyCardNo != null">
+				verify_card_no,
+			</if>
+			<if test="verifyQuestion != null">
+				verify_question,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="verifyUserName != null">
+				#{verifyUserName,jdbcType=INTEGER},
+			</if>
+			<if test="verifyPassword != null">
+				#{verifyPassword,jdbcType=INTEGER},
+			</if>
+			<if test="verifyMobile != null">
+				#{verifyMobile,jdbcType=INTEGER},
+			</if>
+			<if test="verifyEmail != null">
+				#{verifyEmail,jdbcType=INTEGER},
+			</if>
+			<if test="verifyCardNo != null">
+				#{verifyCardNo,jdbcType=INTEGER},
+			</if>
+			<if test="verifyQuestion != null">
+				#{verifyQuestion,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="com.mlx.uac.model.UserSecurityCenter">
+		update user_security_center
+		<set>
+			<if test="verifyUserName != null">
+				verify_user_name = #{verifyUserName,jdbcType=INTEGER},
+			</if>
+			<if test="verifyPassword != null">
+				verify_password = #{verifyPassword,jdbcType=INTEGER},
+			</if>
+			<if test="verifyMobile != null">
+				verify_mobile = #{verifyMobile,jdbcType=INTEGER},
+			</if>
+			<if test="verifyEmail != null">
+				verify_email = #{verifyEmail,jdbcType=INTEGER},
+			</if>
+			<if test="verifyCardNo != null">
+				verify_card_no = #{verifyCardNo,jdbcType=INTEGER},
+			</if>
+			<if test="verifyQuestion != null">
+				verify_question = #{verifyQuestion,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

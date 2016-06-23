@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder 默认配置为PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="detail" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>type</Key>
+            <DefaultValue>default</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="${type}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${catalina.base}/logs/uac/${type}.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${catalina.base}/logs/uac/${type}.%d{yyyy-MM-dd}.log</fileNamePattern>
+                </rollingPolicy>
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+		
+	<appender name="error"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${catalina.base}/logs/uac/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.base}/logs/uac/error.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%date{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+		<!-- 只打印错误日志 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="detail" />
+		<appender-ref ref="error" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger name="org.mybatis.spring" >
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="scheduler" level="DEBUG" additivity="false">
+        <appender-ref ref="DEBUG"/>
+    </logger>
+    
+	<!-- logback为java中的包 -->
+	<logger name="logback" />
+
+</configuration>

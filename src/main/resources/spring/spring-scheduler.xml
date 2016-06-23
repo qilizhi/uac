@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	default-lazy-init="true">
+
+	<description>使用Spring Scheduled的定时任务配置</description>
+	<!-- 
+	<task:scheduler id="springScheduler" pool-size="10" />
+	<task:scheduled-tasks scheduler="springScheduler">
+	-->
+		<!-- 查询补单订单，每隔2分钟执行一次 -->
+		<!-- <task:scheduled ref="orderFindScheduler" method="orderRepair"  
+			cron="0 0/2 * * * ?" /> -->
+		<!--查询退款订单 每隔30分钟执行一次 -->
+		<!-- <task:scheduled ref="orderRefundScheduler" method="orderRefund"  
+			cron="0 0/30 * * * ?" />	 -->
+		<!--冲回库存 每隔30分钟执行一次 -->
+		<!-- <task:scheduled ref="backGoodsStockScheduler" method="orderRepair"  
+			cron="0 0/30 * * * ?" />	 -->
+		<!-- 	 
+	</task:scheduled-tasks>
+	-->
+</beans>

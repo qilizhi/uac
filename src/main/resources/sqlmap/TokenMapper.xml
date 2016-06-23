@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlx.uac.dao.TokenMapper">
+	<resultMap id="BaseResultMap" type="com.mlx.uac.model.Token">
+		<id column="token_id" property="tokenId" jdbcType="VARCHAR" />
+		<result column="token_date" property="tokenDate" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="token_count" property="tokenCount" jdbcType="TINYINT" />
+		<result column="access_count" property="accessCount" jdbcType="TINYINT" />
+		<result column="exp_time" property="expTime" jdbcType="VARCHAR" />
+		<result column="bind_type" property="bindType" jdbcType="VARCHAR" />
+		<result column="bind_id" property="bindId" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Example_Where_Clause">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="tokenId != null and tokenId != ''">
+				and token_id = #{tokenId}
+			</if>
+			<if test="status != null and status != ''">
+				AND status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="bindType != null and bindType != ''">
+				AND bind_type = #{bindType,jdbcType=VARCHAR}
+			</if>
+			<if test="bindId != null and bindId != ''">
+				AND bind_id = #{bindId,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="Base_Column_List">
+		token_id, token_date, status, token_count, access_count,
+		exp_time, bind_type, bind_id, create_time, update_time
+	</sql>
+
+	<select id="select" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from token
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<select id="list" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from token
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from token
+		where
+		token_id = #{tokenId,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.mlx.uac.model.Token">
+		insert into token
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tokenId != null">
+				token_id,
+			</if>
+			<if test="tokenDate != null">
+				token_date,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="tokenCount != null">
+				token_count,
+			</if>
+			<if test="accessCount != null">
+				access_count,
+			</if>
+			<if test="expTime != null">
+				exp_time,
+			</if>
+			<if test="bindType != null">
+				bind_type,
+			</if>
+			<if test="bindId != null">
+				bind_id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tokenId != null">
+				#{tokenId,jdbcType=VARCHAR},
+			</if>
+			<if test="tokenDate != null">
+				#{tokenDate,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="tokenCount != null">
+				#{tokenCount,jdbcType=TINYINT},
+			</if>
+			<if test="accessCount != null">
+				#{accessCount,jdbcType=TINYINT},
+			</if>
+			<if test="expTime != null">
+				#{expTime,jdbcType=VARCHAR},
+			</if>
+			<if test="bindType != null">
+				#{bindType,jdbcType=VARCHAR},
+			</if>
+			<if test="bindId != null">
+				#{bindId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.mlx.uac.model.Token">
+		update token
+		<set>
+			<if test="tokenDate != null">
+				token_date = #{tokenDate,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="tokenCount != null">
+				token_count = #{tokenCount,jdbcType=TINYINT},
+			</if>
+			<if test="accessCount != null">
+				access_count = #{accessCount,jdbcType=TINYINT},
+			</if>
+			<if test="expTime != null">
+				exp_time = #{expTime,jdbcType=VARCHAR},
+			</if>
+			<if test="bindType != null">
+				bind_type = #{bindType,jdbcType=VARCHAR},
+			</if>
+			<if test="bindId != null">
+				bind_id = #{bindId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where token_id = #{tokenId,jdbcType=VARCHAR}
+	</update>
+</mapper>

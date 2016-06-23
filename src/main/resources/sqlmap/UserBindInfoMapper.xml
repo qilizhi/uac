@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlx.uac.dao.UserBindInfoMapper">
+	<resultMap id="BaseResultMap" type="com.mlx.uac.model.UserBindInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="bind_id" property="bindId" jdbcType="VARCHAR" />
+		<result column="head_img_url" jdbcType="VARCHAR" property="headImgUrl" />
+		<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="open_id" property="openId" jdbcType="VARCHAR" />
+		<result column="open_name" property="openName" jdbcType="VARCHAR" />
+		<result column="bind_type" property="bindType" jdbcType="VARCHAR" />
+		<result column="login_token" property="loginToken" jdbcType="VARCHAR" />
+		<result column="login_type" property="loginType" jdbcType="INTEGER" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="sys_cnl" property="sysCnl" jdbcType="VARCHAR" />
+		<result column="token_exp_time" jdbcType="TIMESTAMP" property="tokenExpTime" />
+		<result column="has_exp_time" jdbcType="TIMESTAMP" property="hasExpTime" />
+		<result column="reg_date" property="regDate" jdbcType="VARCHAR" />
+		<result column="reg_time" property="regTime" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Example_Where_Clause">
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="userId != null and userId != ''">
+				and user_id = #{userId,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="bindId != null and bindId != ''">
+				and bind_id = #{bindId,jdbcType=VARCHAR}
+			</if>
+			<if test="openId != null and openId != ''">
+				and open_id = #{openId,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="Base_Column_List">
+		id, user_id, bind_id, head_img_url, nickname, status,
+		open_id, open_name, bind_type, login_token,
+		login_type, source,
+		sys_cnl, token_exp_time, has_exp_time, reg_date, reg_time,
+		create_time, update_time
+	</sql>
+
+	<select id="select" resultMap="BaseResultMap"
+		parameterType="com.mlx.uac.model.UserBindInfo">
+		select
+		<include refid="Base_Column_List" />
+		from ${tableName}
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="list" resultMap="BaseResultMap"
+		parameterType="com.mlx.uac.model.UserBindInfo">
+		select
+		<include refid="Base_Column_List" />
+		from ${tableName}
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from ${tableName}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.mlx.uac.model.UserBindInfo">
+		insert into ${tableName}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="bindId != null">
+				bind_id,
+			</if>
+			<if test="headImgUrl != null">
+				head_img_url,
+			</if>
+			<if test="nickname != null">
+				nickname,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="openName != null">
+				open_name,
+			</if>
+			<if test="bindType != null">
+				bind_type,
+			</if>
+			<if test="loginToken != null">
+				login_token,
+			</if>
+			<if test="loginType != null">
+				login_type,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="sysCnl != null">
+				sys_cnl,
+			</if>
+			<if test="tokenExpTime != null">
+				token_exp_time,
+			</if>
+			<if test="hasExpTime != null">
+				has_exp_time,
+			</if>
+			<if test="regDate != null">
+				reg_date,
+			</if>
+			<if test="regTime != null">
+				reg_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="bindId != null">
+				#{bindId,jdbcType=VARCHAR},
+			</if>
+			<if test="headImgUrl != null">
+				#{headImgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="openName != null">
+				#{openName,jdbcType=VARCHAR},
+			</if>
+			<if test="bindType != null">
+				#{bindType,jdbcType=VARCHAR},
+			</if>
+			<if test="loginToken != null">
+				#{loginToken,jdbcType=VARCHAR},
+			</if>
+			<if test="loginType != null">
+				#{loginType,jdbcType=TINYINT},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="sysCnl != null">
+				#{sysCnl,jdbcType=VARCHAR},
+			</if>
+			<if test="tokenExpTime != null">
+				#{tokenExpTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="hasExpTime != null">
+				#{hasExpTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="regDate != null">
+				#{regDate,jdbcType=VARCHAR},
+			</if>
+			<if test="regTime != null">
+				#{regTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.mlx.uac.model.UserBindInfo">
+		update ${tableName}
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="bindId != null">
+				bind_id = #{bindId,jdbcType=VARCHAR},
+			</if>
+			<if test="headImgUrl != null">
+				head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="openName != null">
+				open_name = #{openName,jdbcType=VARCHAR},
+			</if>
+			<if test="bindType != null">
+				bind_type = #{bindType,jdbcType=VARCHAR},
+			</if>
+			<if test="loginToken != null">
+				login_token = #{loginToken,jdbcType=VARCHAR},
+			</if>
+			<if test="loginType != null">
+				login_type = #{loginType,jdbcType=INTEGER},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="sysCnl != null">
+				sys_cnl = #{sysCnl,jdbcType=VARCHAR},
+			</if>
+			<if test="tokenExpTime != null">
+				token_exp_time = #{tokenExpTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="hasExpTime != null">
+				has_exp_time = #{hasExpTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="regDate != null">
+				reg_date = #{regDate,jdbcType=VARCHAR},
+			</if>
+			<if test="regTime != null">
+				reg_time = #{regTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectFirstRecord" resultMap="BaseResultMap"
+		parameterType="com.mlx.uac.model.UserBindInfo">
+		select
+		<include refid="Base_Column_List" />
+		from ${tableName} where 1=1
+		<!-- and status = #{status,jdbcType=VARCHAR} -->
+		and bind_id = #{bindId,jdbcType=VARCHAR}
+		order by create_time limit 0,1
+	</select>
+</mapper>
